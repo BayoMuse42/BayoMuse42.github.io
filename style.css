@@ -11,3 +11,11 @@ h1, h2{
 p{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
+
+img{
+    border-style:groove;
+    border-color:#083a02;
+    border-width:5px;
+    Height:600px;
+    width:400px;
+}
