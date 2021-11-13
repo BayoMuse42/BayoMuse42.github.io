@@ -1,20 +1,43 @@
-body{
+body
+{
     background-color:#3bb045;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-h1, h2{
+.assignment
+{
+    padding:10px;
+    margin:10px;
+    padding:10px;
+    background:#88ca82;
+    border-radius:5px;
+    width:20%;
+    height:30%;
+}
+
+.assignments
+{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+h1, h2
+{
     text-align:center; 
     font-weight:bold;  
 }
 
-p{
+p
+{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-img{
+.assignment img
+{
     border-style:groove;
     border-color:#083a02;
     border-width:5px;
-    Height:600px;
+    Width:200px;
+    display:block;
+    margin:auto;
 }
