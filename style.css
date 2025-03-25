@@ -32,12 +32,3 @@ p
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.assignment img
-{
-    border-style:groove;
-    border-color:#083a02;
-    border-width:5px;
-    Width:200px;
-    display:block;
-    margin:auto;
-}
