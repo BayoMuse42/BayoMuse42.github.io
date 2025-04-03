@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Leadership</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+  <!-- Bootstrap Icons CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Rhaynie Bongiorno</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Key Insights
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="Key_Insight1.html">Key Insight 1</a></li>
+                <li><a class="dropdown-item" href="Key_Insight2.html">Key Insight 2</a></li>
+                <li><a class="dropdown-item" href="Key_Insight3.html">Key Insight 3</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Leadership.html">Leadership</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2 sidenav sticky-top">
+          <h2>Contents</h2>
+          <hr>
+          <p><a href="#problem">Problem</a></p>
+          <p><a href="#solution">Solution</a></p>
+          <p><a href="#implementation">Implementation</a></p>
+          <p><a href="#evaluation">Evaluation</a></p>
+        </div>
+        <div class="col-sm-8">
+            <div id="problem">
+              <h2>Problem</h2>
+              <p>Higher education is a prime target for social engineering attacks. Social engineering is a type of attack where a malicious actor “manipulate[s] people into sharing information that they shouldn’t share, downloading software that they shouldn’t download, visiting websites they shouldn’t visit, sending money to criminals or making other mistakes that compromise their personal or organizational security” (<a href="https://www.ibm.com/think/topics/social-engineering">IBM</a>). Emails with links to websites pretending to be the University login page. Messages to staff pretending to be the president of the University. These are just some examples of how hackers will try to get sensitive information or the accounts of faculty, staff, and students. In an academic setting, social engineering is commonly done through email scams, also known as phishing attacks. </p>
+              <p>In the past, the university’s information security office (UISO) had been receiving reports of phishing emails through a phishing report inbox. However, there was no monitoring in the inbox. Some automation in place checked the number of emails reported under a specific subject line and alerted the analysts to find out if a certain number was reached within 24 hours. </p>
+              <img src="" class="img-responsive" alt="Teams message sent to the analyst group chat ">
+              <p>The automated bot did not provide information outside of the subject line. Analysts had to search through the report inbox to find the emails and determine if they were malicious. This took up an analyst’s time and resources trying to find the information they needed to make a determination. Often, threat actors will use a stolen account to send out their scam emails, as the university domain makes them appear legitimate. Phishing attacks that result in a compromised user account would take a considerable amount of time to remediate. By the time the team would determine how the threat actor gained access and how they could be blocked, another account would be compromised, and more malicious emails would be sent to the university population. Attackers will use software to send out thousands of emails at the press of a button. With improvements in generative AI, some groups have also utilized models such as ChatGPT to generate more personalized email messages to appear legitimate. These types of attacks have been and continue to be an ever-present threat to higher education institutions across the U.S., and, as with all cyber threats, are constantly evolving. The UISO needed to create a more efficient strategy to combat the growing number of campaigns targeting USC. </p>
+            </div>
+            <div id="solution">
+              <h2>Solution</h2>
+              <p>While the steps for remediation taken by our analyst team were effective, their efforts were offset by the large gap of time between when the attack happened and when the attack was discovered. This gap was caused by two main factors. </p>
+              <ol>
+                <li>Lack of proper visibility into the report inbox led to a delay in the detection of potential phishing campaigns.</li>
+                <li>Analysts had to manually shift through emails to find information on the ones related to the potential campaign.</li>
+              </ol>
+              <p>Tackling these two areas would significantly improve response time and reduce the risk of compromise. </p>
+              <h4>Phishing Bot</h4>
+              <p>To close the gap and improve our workflow, I took on the development of the UISO’s Automated Phishing Detection Bot, also known as Phishing Bot. Phishing Bot’s purpose is to actively scan the report inbox and report to our analyst Microsoft Teams chat based on a set of criteria. Currently, the bot reports if there are over 5 emails with the same subject line, or if the email is impersonating a university faculty or staff member. The bot reports details about the email including the subject line, who the email was from, and the data from any file attachments or links that are in the email.</p>
+            </div>
+            <div id="implementation">
+              <h2>Implementation</h2>
+              <p>Phishing Bot went through multiple iterations before reaching its current implementation.</p>
+              <h4>Phishing Bot 2.0</h4>
+              <p>This iteration of Phishing Bot was created based on the original workflow that was present before my time at the UISO. The bot was created through Microsoft’s Power Automate cloud software. Power Automate is a tool that allows users to create automated actions within Microsoft applications such as Outlook, Teams, and SharePoint. The “flow” would trigger every time an email was reported and sent to the report inbox. The bot would parse the information from the email and determine if the email should be reported. At this stage, the only criteria that would be checked was the number of emails that were reported for each subject line.</p>
+              <img src="" class="img-responsive" alt="Some of the Power Automate Flow instructions">
+              <p> All the email information would be sent to a Microsoft SharePoint list, where it be used for the bot itself, as well as analytics.</p>
+              <img src="" class="img-responsive" alt="SharePoint list of reported emails">
+              <p>This iteration of Phishing Bot improved our team’s visibility into how many emails were being reported. It also provided additional information for our analysts such as the potential threat actor and who reported the email, allowing the analyst to block the sender without having to search for the email manually.</p>
+              <p>However, there were still ways that the automation could be improved. The bot processed only one email at a time. If there was a high volume of emails being reported, such as during a large-scale campaign, the Teams chat would be bombarded with alerts from the bot. This also caused a race condition where two processes would attempt to update the number of emails at the same time, causing the number to be inaccurate. Many of these issues came from the limitations of Power Automate. While it is a great tool for automating simple tasks, it became apparent that this was too complex of a problem.</p>
+              <h4>Phishing Bot 3.0</h4>
+              <p>The current version of Phishing Bot still uses Power Automate; however, it is used to exclusively interact with the Application programming interface (API) of Outlook and Teams. The back-end was migrated to Python. This allowed the flexibility we needed to adapt the application to our team’s needs. The Power Automate flow interacts with the Python code through an HTTP endpoint created using Azure Functions. Azure Function Apps are serverless computing platform-as-a-service (PaaS) providers. In other words, the Python code can live within our Azure environment without the need to set up a server. The Python code handles all the data processing and detection, completely independent of the Power Automate code.</p>
+              <img src="" class="img-responsive" alt="Screenshot of Phishing Bot code">
+              <p>Instead of using a SharePoint list, the data collected by Phishing Bot is stored within Azure Table Storage. Azure Table Storage is a highly scalable, cost-effective NoSQL storage solution designed for applications requiring large volumes of structured, non-relational data. Unlike SharePoint lists, which are typically used for smaller-scale data storage and management, Azure Tables offer greater flexibility and seamless integration with the Azure ecosystem. The tables are queryable, allowing for easy data analysis. Since the data is schema-less, it does not require a set structure.  This works perfectly for Phishing Bot, as the data needed from each email can change depending on the different attacks the team is seeing in the university’s ecosystem.</p>
+              <img src="" class="img-responsive" alt="Example of a Phishing Bot alert in Microsoft Teams">
+              <p>With the migration to a Python backend, Phishing Bot now provides the analysts with new information such as a screenshot of the email and details with any links or file attachments included. It also sends an alert to the team’s triage dashboard with the rest of the alerts and investigations. This saves time for the analyst, as previously, these alerts would have to be created manually.</p>
+            </div>
+            <div id="evaluation">
+              <h2>Evaluation</h2>
+              <p>As stated previously, data that is collected by Phishing Bot is stored in a queryable Azure Table database. Logs are also taken with each investigation conducted by an analyst. The success of Phishing Bot can be measured through metrics such as the length it takes for a phishing incident to be remediated, the number of reportable emails, and the number of accounts compromised within a particular period. The UISO is currently working on creating reports for all our metrics for the Fall 2024 semester, including our phishing statistics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <footer class="bg-light text-dark py-4" id="Contact">
+      <div class="container">
+        <h2 class="text-center">Want to get in contact?</h2><br>
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center">
+            <p>
+              <a href="mailto:brhaynie42@gmail.com">
+                <i class="bi bi-envelope"></i> brhaynie42@gmail.com
+              </a>
+            </p>   
+            <p>
+              <a href="https://www.linkedin.com/in/savannah-bongiorno-4905912b6">
+                <i class="bi bi-linkedin"></i>
+                Linkedin
+              </a>
+            </p>
+          </div>
+          <div class="col-md-6 text-md-end text-center">
+            <img class="img-thumbnail" src="img/Banquet24.webp" alt="My sister and I with Cocky">
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
