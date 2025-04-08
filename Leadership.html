@@ -44,7 +44,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-2 sidenav sticky-top">
+        <div class="col-sm-2 sidenav">
           <h2>Contents</h2>
           <hr>
           <p><a href="#problem">Problem</a></p>
@@ -57,7 +57,8 @@
               <h2>Problem</h2>
               <p>Higher education is a prime target for social engineering attacks. Social engineering is a type of attack where a malicious actor “manipulate[s] people into sharing information that they shouldn’t share, downloading software that they shouldn’t download, visiting websites they shouldn’t visit, sending money to criminals or making other mistakes that compromise their personal or organizational security” (<a href="https://www.ibm.com/think/topics/social-engineering">IBM</a>). Emails with links to websites pretending to be the University login page. Messages to staff pretending to be the president of the University. These are just some examples of how hackers will try to get sensitive information or the accounts of faculty, staff, and students. In an academic setting, social engineering is commonly done through email scams, also known as phishing attacks. </p>
               <p>In the past, the university’s information security office (UISO) had been receiving reports of phishing emails through a phishing report inbox. However, there was no monitoring in the inbox. Some automation in place checked the number of emails reported under a specific subject line and alerted the analysts to find out if a certain number was reached within 24 hours. </p>
-              <img src="" class="img-responsive" alt="Teams message sent to the analyst group chat ">
+              <img src="img/Leadership1.png" class="img-responsive rounded mx-auto d-block" alt="Teams message sent to the analyst group chat "><br>
+              <p class="small fst-italic text-center">Teams message sent to the analyst group chat</p>
               <p>The automated bot did not provide information outside of the subject line. Analysts had to search through the report inbox to find the emails and determine if they were malicious. This took up an analyst’s time and resources trying to find the information they needed to make a determination. Often, threat actors will use a stolen account to send out their scam emails, as the university domain makes them appear legitimate. Phishing attacks that result in a compromised user account would take a considerable amount of time to remediate. By the time the team would determine how the threat actor gained access and how they could be blocked, another account would be compromised, and more malicious emails would be sent to the university population. Attackers will use software to send out thousands of emails at the press of a button. With improvements in generative AI, some groups have also utilized models such as ChatGPT to generate more personalized email messages to appear legitimate. These types of attacks have been and continue to be an ever-present threat to higher education institutions across the U.S., and, as with all cyber threats, are constantly evolving. The UISO needed to create a more efficient strategy to combat the growing number of campaigns targeting USC. </p>
             </div>
             <div id="solution">
@@ -76,16 +77,20 @@
               <p>Phishing Bot went through multiple iterations before reaching its current implementation.</p>
               <h4>Phishing Bot 2.0</h4>
               <p>This iteration of Phishing Bot was created based on the original workflow that was present before my time at the UISO. The bot was created through Microsoft’s Power Automate cloud software. Power Automate is a tool that allows users to create automated actions within Microsoft applications such as Outlook, Teams, and SharePoint. The “flow” would trigger every time an email was reported and sent to the report inbox. The bot would parse the information from the email and determine if the email should be reported. At this stage, the only criteria that would be checked was the number of emails that were reported for each subject line.</p>
-              <img src="" class="img-responsive" alt="Some of the Power Automate Flow instructions">
+              <img src="img/Leadership2.png" class="img-responsive rounded mx-auto d-block" alt="Some of the Power Automate Flow instructions"><br>
+              <p class="small fst-italic text-center">Some of the Power Automate Flow instructions</p>
               <p> All the email information would be sent to a Microsoft SharePoint list, where it be used for the bot itself, as well as analytics.</p>
-              <img src="" class="img-responsive" alt="SharePoint list of reported emails">
+              <img src="img/Leadership3.png" class="img-responsive rounded mx-auto d-block" alt="SharePoint list of reported emails"><br>
+              <p class="small fst-italic text-center">SharePoint list of reported emails</p>
               <p>This iteration of Phishing Bot improved our team’s visibility into how many emails were being reported. It also provided additional information for our analysts such as the potential threat actor and who reported the email, allowing the analyst to block the sender without having to search for the email manually.</p>
               <p>However, there were still ways that the automation could be improved. The bot processed only one email at a time. If there was a high volume of emails being reported, such as during a large-scale campaign, the Teams chat would be bombarded with alerts from the bot. This also caused a race condition where two processes would attempt to update the number of emails at the same time, causing the number to be inaccurate. Many of these issues came from the limitations of Power Automate. While it is a great tool for automating simple tasks, it became apparent that this was too complex of a problem.</p>
               <h4>Phishing Bot 3.0</h4>
               <p>The current version of Phishing Bot still uses Power Automate; however, it is used to exclusively interact with the Application programming interface (API) of Outlook and Teams. The back-end was migrated to Python. This allowed the flexibility we needed to adapt the application to our team’s needs. The Power Automate flow interacts with the Python code through an HTTP endpoint created using Azure Functions. Azure Function Apps are serverless computing platform-as-a-service (PaaS) providers. In other words, the Python code can live within our Azure environment without the need to set up a server. The Python code handles all the data processing and detection, completely independent of the Power Automate code.</p>
-              <img src="" class="img-responsive" alt="Screenshot of Phishing Bot code">
+              <img src="img/KIAppendA.png" class="img-responsive rounded mx-auto d-block" alt="Screenshot of Phishing Bot code"><br>
+              <p class="small fst-italic text-center">Screenshot of Phishing Bot code</p>
               <p>Instead of using a SharePoint list, the data collected by Phishing Bot is stored within Azure Table Storage. Azure Table Storage is a highly scalable, cost-effective NoSQL storage solution designed for applications requiring large volumes of structured, non-relational data. Unlike SharePoint lists, which are typically used for smaller-scale data storage and management, Azure Tables offer greater flexibility and seamless integration with the Azure ecosystem. The tables are queryable, allowing for easy data analysis. Since the data is schema-less, it does not require a set structure.  This works perfectly for Phishing Bot, as the data needed from each email can change depending on the different attacks the team is seeing in the university’s ecosystem.</p>
-              <img src="" class="img-responsive" alt="Example of a Phishing Bot alert in Microsoft Teams">
+              <img src="img/KI2AppendB.png" class="img-responsive rounded mx-auto d-block" alt="Example of a Phishing Bot alert in Microsoft Teams"><br>
+              <p class="small fst-italic text-center">Example of a Phishing Bot alert in Microsoft Teams</p>
               <p>With the migration to a Python backend, Phishing Bot now provides the analysts with new information such as a screenshot of the email and details with any links or file attachments included. It also sends an alert to the team’s triage dashboard with the rest of the alerts and investigations. This saves time for the analyst, as previously, these alerts would have to be created manually.</p>
             </div>
             <div id="evaluation">
@@ -110,6 +115,12 @@
               <a href="https://www.linkedin.com/in/savannah-bongiorno-4905912b6">
                 <i class="bi bi-linkedin"></i>
                 Linkedin
+              </a>
+            </p>
+            <p>
+              <a href="https://github.com/BayoMuse42">
+                <i class="bi bi-github"></i>
+                GitHub
               </a>
             </p>
           </div>
